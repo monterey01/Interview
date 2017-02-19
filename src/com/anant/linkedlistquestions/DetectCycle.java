@@ -1,12 +1,11 @@
 package com.anant.linkedlistquestions;
 
+import com.anant.linkedlistquestions.Node;
+
 public class DetectCycle {
 
-	// Solution for https://www.hackerrank.com/challenges/detect-whether-a-linked-list-contains-a-cycle
-	static class Node {
-		int data;
-		Node next;
-	}
+	// Solution for
+	// https://www.hackerrank.com/challenges/detect-whether-a-linked-list-contains-a-cycle
 
 	boolean hasCycle(Node head) {
 		Node tmp = head;

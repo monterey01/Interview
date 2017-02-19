@@ -3,12 +3,6 @@ package com.anant.linkedlistquestions;
 //Solution for https://www.hackerrank.com/challenges/reverse-a-linked-list
 public class ReverseLinkedList {
 
-	static class Node {
-		int data;
-		Node next;
-
-	}
-
 	public static void main(String Args[]) {
 
 		Node n1 = new Node();

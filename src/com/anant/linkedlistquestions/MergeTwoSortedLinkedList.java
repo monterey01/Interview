@@ -2,16 +2,12 @@ package com.anant.linkedlistquestions;
 
 public class MergeTwoSortedLinkedList {
 
-	//Solution for https://www.hackerrank.com/challenges/merge-two-sorted-linked-lists
-	static class Node {
-		int data;
-		Node next;
-	}
+	// Solution for
+	// https://www.hackerrank.com/challenges/merge-two-sorted-linked-lists
 
 	public static Node MergeLists(Node headA, Node headB) {
 		Node head = null;
 		Node tail = null;
-	
 
 		while (headA != null || headB != null) {
 			boolean headAadded = false;
@@ -57,7 +53,7 @@ public class MergeTwoSortedLinkedList {
 					tail = headB;
 				}
 				headB = tmp1;
-				tail.next=null;
+				tail.next = null;
 			}
 
 			if (headAadded) {
@@ -70,7 +66,7 @@ public class MergeTwoSortedLinkedList {
 					tail = headA;
 				}
 				headA = tmp;
-				tail.next=null;
+				tail.next = null;
 			}
 		}
 		return head;

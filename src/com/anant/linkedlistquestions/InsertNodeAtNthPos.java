@@ -3,11 +3,7 @@ package com.anant.linkedlistquestions;
 public class InsertNodeAtNthPos {
 
 	//Solution for https://www.hackerrank.com/challenges/insert-a-node-at-a-specific-position-in-a-linked-list
-	static class Node {
-		int data;
-		Node next;
-	}
-
+	
 	public static Node InsertNth(Node head, int data, int position) {
 		// This is a "method-only" submission.
 		// You only need to complete this method.
