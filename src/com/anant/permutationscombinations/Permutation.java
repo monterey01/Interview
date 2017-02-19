@@ -1,4 +1,4 @@
-package com.anant.combinations;
+package com.anant.permutationscombinations;
 
 import java.util.LinkedList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.anant.combinations;
+package com.anant.permutationscombinations;
 
 
 
