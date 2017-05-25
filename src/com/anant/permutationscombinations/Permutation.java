@@ -22,6 +22,11 @@ public class Permutation {
 			StringBuilder sb1 = new StringBuilder();
 			StringBuilder sb2 = new StringBuilder();
 			
+			/**if(startChar!='\0'){
+				sb1.append(startChar);
+				sb2.append(startChar);
+				
+			}**/
 			sb1.append(c[0]);
 			sb1.append(c[1]);
 			sb2.append(c[1]);
