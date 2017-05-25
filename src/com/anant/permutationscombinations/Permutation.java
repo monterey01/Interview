@@ -7,64 +7,46 @@ public class Permutation {
 
 	public static void main(String[] args) {
 
-		System.out.println(getPermutationList("abcd".toCharArray(), null));
+		System.out.println(System.currentTimeMillis());
+		permute("ABCD".toCharArray(), 0, "ABCD".length() - 1);
+		System.out.println(System.currentTimeMillis());
 
 	}
 
-	//abcd`
-	public static List<String> getPermutationList(char c[], List<String> ls ) {
-		
-			
-		if (ls == null)
-			ls = new LinkedList<String>();
+	/**
+	 * permutation function
+	 * 
+	 * @param str
+	 *            string to calculate permutation for
+	 * @param l
+	 *            starting index
+	 * @param r
+	 *            end index
+	 */
 
-		if (c.length == 2) {
-			StringBuilder sb1 = new StringBuilder();
-			StringBuilder sb2 = new StringBuilder();
-			
-			/**if(startChar!='\0'){
-				sb1.append(startChar);
-				sb2.append(startChar);
-				
-			}**/
-			sb1.append(c[0]);
-			sb1.append(c[1]);
-			sb2.append(c[1]);
-			sb2.append(c[0]);
-
-			ls.add(sb1.toString());
-			ls.add(sb2.toString());
+	// bc
+	// abc
+	public static void permute(char c[], int i1, int i2) {
+		if (i1 == i2) {
+			System.out.println(String.valueOf(c));
 		} else {
-			for (int i = 0; i < c.length; i++) {
-				char tmpc[] = new char[c.length - 1];
-			
-				
-				boolean isSameCharacterChecked = false;
-				for (int j = 0,k=0; j < c.length - 1; j++,k++) {
-					if (!isSameCharacterChecked && i == j) {
-						isSameCharacterChecked = true;
-						j--;
-					} else {
-						tmpc[j] = c[k];
-					}
 
-				}
-				List<String >ls1 = getPermutationList(tmpc, null);
-
-				for (int k = 0; k < ls1.size(); k++) {
-					String s = ls1.get(k);
-					StringBuilder sb1 = new StringBuilder();
-					sb1.append(s.toCharArray());
-					sb1.insert(0, c[i]); 
-					ls1.set(k, sb1.toString());
-				}
-				
-				ls.addAll(ls1);
+			for (int i = i1; i <= i2; i++) {
+				c=swap(c, i, i1);
+				permute(c, i1 + 1, i2);
+				c = swap(c, i, i1);
 
 			}
 		}
 
-		return ls;
 	}
 
+	public static char[] swap(char c[], int i1, int i2) {
+		if (!(i1 == i2)) {
+			char temp = c[i1];
+			c[i1] = c[i2];
+			c[i2] = temp;
+		}
+		return c;
+	}
 }

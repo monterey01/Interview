@@ -10,7 +10,7 @@ public class InsertNodeAtNthPos {
 
 		Node nd = new Node();
 		Node prv = null;
-		Node tmp = head;
+		Node cur = head;
 
 		if (head == null)
 			return head;
@@ -25,15 +25,15 @@ public class InsertNodeAtNthPos {
 					head = nd;
 				}
 			} else {
-				if (tmp != null)
-					prv = tmp;
-				if (tmp.next != null)
-					tmp = tmp.next;
+				if (cur != null)
+					prv = cur;
+				if (cur.next != null)
+					cur = cur.next;
 
 				if (i == position) {
 
 					prv.next = nd;
-					nd.next = tmp;
+					nd.next = cur;
 				}
 
 			}

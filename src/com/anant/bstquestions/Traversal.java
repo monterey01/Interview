@@ -1,5 +1,7 @@
 package com.anant.bstquestions;
 
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
@@ -131,6 +133,8 @@ public class Traversal {
 			}
 			
 		}
+		
+		bfs(n);
 	    
 	}
 	
@@ -177,7 +181,7 @@ public class Traversal {
 			l.setN(n);
 			l.setIo(counter);
 			q.add(l);
-			
+		
 			
 			depthFirstTraversal(n.getLeft(),q,level+1,++counter);
 			depthFirstTraversal(n.getRight(),q,level+1,++counter);
@@ -185,6 +189,16 @@ public class Traversal {
 		
 		return q;
 
+	}
+	
+	public static void bfs(final Node root) {
+	    final Queue<Node> queue = new LinkedList<>(Collections.singleton(root));
+	    while (!queue.isEmpty()) {
+	        final Node current = queue.poll();
+	        System.out.println(current.getData());
+	        if (current.getLeft() != null) queue.offer(current.getLeft());
+	        if (current.getRight() != null) queue.offer(current.getRight()); 
+	    }
 	}
 
 }

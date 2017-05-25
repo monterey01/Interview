@@ -19,12 +19,11 @@ public class ReverseLinkedList {
 		n2.next = n3;
 		n3.next = n4;
 
-	
 		System.out.println(reverse(n1).toString());
 
 	}
 
-	public static Node reverse(Node head){
+	public static Node reverse(Node head) {
 		// 2,3,4
 
 		if (head != null && head.next != null) {
@@ -35,10 +34,9 @@ public class ReverseLinkedList {
 
 			// 3
 			head = tmp1.next;
-			tmp1.next=null;
-			
+			tmp1.next = null;
+
 			tmp2 = head.next;
-		
 
 			head.next = tmp1;
 
@@ -55,4 +53,6 @@ public class ReverseLinkedList {
 
 		return head;
 	}
+
+	
 }
