@@ -1,10 +1,12 @@
 package com.anant.sort;
 
+import java.util.Arrays;
+
 //2,3,4,1,5
 public class MergeSort {
 
 	public static void main(String args[]) {
-		int[] i = { 4, 3 };
+		int[] i = { 12, 11, 13, 5, 6, 7 };
 
 		i = divideAndConquqer(i);
 		for (int value : i) {
@@ -14,9 +16,6 @@ public class MergeSort {
 
 	private static int[] divideAndConquqer(int[] i) {
 
-		if (i.length < 2) {
-			return i;
-		}
 
 		if (i.length == 2) {
 			if (i[0] > i[1]) {
@@ -28,20 +27,19 @@ public class MergeSort {
 		}
 
 		if (i.length > 2) {
+			int i1[];
+			int i2[];
+			int midIndex = i.length / 2;
 
+			i1 = Arrays.copyOfRange(i, 0, midIndex);
+			i2 = Arrays.copyOfRange(i, midIndex, i.length);
+			i1 = divideAndConquqer(i1);
+			i2 = divideAndConquqer(i2);
+
+			i = sortArrays(i1, i2);
 		}
 
 		return i;
-	}
-
-	private static int[] copyArray(int[] i, int startIndex, int endIndex) {
-		int[] k = new int[endIndex - startIndex + 1];
-
-		for (int j = startIndex, l = 0; j <= endIndex; j++, l++) {
-			k[l] = i[startIndex];
-		}
-
-		return k;
 	}
 
 	private static int[] sortArrays(int[] i1, int[] i2) {
