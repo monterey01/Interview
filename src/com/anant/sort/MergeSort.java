@@ -6,7 +6,7 @@ import java.util.Arrays;
 public class MergeSort {
 
 	public static void main(String args[]) {
-		int[] i = { 12, 11, 13, 5, 6, 7 };
+		int[] i = { 12,9, 11, 13, 5, 6, 7 };
 
 		i = divideAndConquqer(i);
 		for (int value : i) {
