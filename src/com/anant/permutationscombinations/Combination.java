@@ -23,8 +23,8 @@ public class Combination {
 
 	public static void main(String args[]) {
 		Combination c = new Combination();
-		// c.combination("abcdefgh".toCharArray());
-		c.combinationEasy("abc".toCharArray());
+		// c.combination("abcd".toCharArray());
+		c.combinationEasy("abcd".toCharArray());
 
 	}
 

@@ -7,74 +7,22 @@ import java.util.Stack;
 //Based on https://www.youtube.com/watch?v=ZM-sV9zQPEs&index=1&list=PLrmLmBdmIlpv_jNDXtJGYTPNQ2L1gdHxu
 public class Traversal {
 
-	static class Level implements Comparable<Level> {
-
-		private Node n;
-		private int i;
-		private int io;
-
-		public int getIo() {
-			return io;
-		}
-
-		public void setIo(int io) {
-			this.io = io;
-		}
-
-		public Node getN() {
-			return n;
-		}
-
-		public void setN(Node n) {
-			this.n = n;
-		}
-
-		public int getLevel() {
-			return i;
-		}
-
-		public void setLevel(int i) {
-			this.i = i;
-		}
-
-		@Override
-		public String toString() {
-			return "Level [n=" + n.toString() + ", i=" + i + "]";
-		}
-
-		@Override
-		public int compareTo(Level o) {
-			if (o != null & n != null) {
-				if (o.getLevel() == i) {
-					return io - o.getIo();
-
-				}
-				if (i < o.getLevel()) {
-					return -1;
-				} else {
-					return 1;
-				}
-
-			}
-
-			return 0;
-		}
-
-	}
-
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Node n, n1, n2, n3, n4, n5, n6, n7, n8;
-
-		n = new Node();
-		n1 = new Node();
-		n2 = new Node();
-		n3 = new Node();
-		n4 = new Node();
-		n5 = new Node();
-		n6 = new Node();
-		n7 = new Node();
-		n8 = new Node();
+		long l=;
+		int i=999999999;
+		Node n = new Node();
+		Node n1 = new Node();
+		Node n2 = new Node();
+		Node n3 = new Node();
+		Node n4 = new Node();
+		Node n5 = new Node();
+		Node n6 = new Node();
+		Node n7 = new Node();
+		Node n8 = new Node();
+		Node n9=new Node();
+		Node n10=new Node();
+		Node n11=new Node();
 
 		n.setData(10);
 
@@ -102,23 +50,27 @@ public class Traversal {
 
 		n8.setData(8);
 		n6.setRight(n8);
-
-		System.out.println(" ");
-		//printPreOrder(n);
-
-		System.out.println(" ");
-		//printInOrder(n);
-
-		System.out.println(" ");
-		//printPostOrder(n);
-
-		System.out.println(" ");
-		 printBFS(n);
-		 
 		
+		n9.setData(99);
+		n4.setLeft(n9);
+		
+		n10.setData(1100);
+		n4.setRight(n10);
+		
+		n11.setData(1200);
+		n8.setLeft(n11);
+		
+		System.out.println(" ");
+		// printPreOrder(n);
 
-		
-		
+		System.out.println(" ");
+		// printInOrder(n);
+
+		System.out.println(" ");
+		// printPostOrder(n);
+
+		System.out.println(" ");
+		printSpiralTree(n);
 
 	}
 
@@ -161,11 +113,51 @@ public class Traversal {
 		while (!q.isEmpty()) {
 			Node tmp = q.poll();
 			System.out.println(tmp.getData());
-			if(tmp.getLeft()!=null)q.add(tmp.getLeft());
-			if(tmp.getRight()!=null)q.add(tmp.getRight());
+			if (tmp.getLeft() != null)
+				q.add(tmp.getLeft());
+			if (tmp.getRight() != null)
+				q.add(tmp.getRight());
 
 		}
 	}
-	
+
+	public static void printSpiralTree(Node n) {
+
+		Stack<Node> s = new Stack<Node>();
+		Stack<Node> s1 = new Stack<Node>();
+
+		s.push(n);
+
+		while (s.size() > 0 || s1.size() > 0) {
+
+			while (s.size() > 0) {
+				Node tmp = s.pop();
+				System.out.print(tmp.getData());
+				System.out.print(" ");
+
+				if (tmp.getLeft() != null)
+					s1.add(tmp.getLeft());
+				if (tmp.getRight() != null)
+					s1.add(tmp.getRight());
+
+			}
+			System.out.println(" ");
+
+			while (s1.size() > 0) {
+
+				Node tmp = s1.pop();
+				System.out.print(tmp.getData());
+				System.out.print(" ");
+
+				if (tmp.getRight() != null)
+					s.add(tmp.getRight());
+				if (tmp.getLeft() != null)
+					s.add(tmp.getLeft());
+
+			}
+			System.out.println(" ");
+
+		}
+	}
 
 }
