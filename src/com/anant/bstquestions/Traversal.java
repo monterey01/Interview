@@ -9,8 +9,6 @@ public class Traversal {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		long l=;
-		int i=999999999;
 		Node n = new Node();
 		Node n1 = new Node();
 		Node n2 = new Node();
