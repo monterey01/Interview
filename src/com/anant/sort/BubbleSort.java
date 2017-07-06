@@ -3,21 +3,16 @@ package com.anant.sort;
 public class BubbleSort {
 
 	public static void main(String args[]) {
-
-		int[] a = { 5,1,4,2,8,-9};
 		
-		for (int i = 0; i < a.length; i++) {
-			
-			// 3,2,5,7
-			for (int j = 1; j < a.length; j++) {
-				if (a[j - 1] > a[j]) {
-					int k=a[j-1];
-					a[j-1]=a[j];
-					a[j]=k;
-				}
-			}
+		String s1="0";
+		String s2="0";
+		String s3="0";
+		
+		System.out.println(((Integer.valueOf(s2)+(Integer.valueOf(s1))==Integer.valueOf(s2))));
 
-		}
+		int[] a = { 5, 1, 4, 2, 8, -9 };
+
+		a = bubbleSort(a);
 
 		for (int value : a) {
 			System.out.println(value);
@@ -25,4 +20,34 @@ public class BubbleSort {
 
 	}
 
+	static int[] bubbleSort(int[] a) {
+
+		for (int i = 0; i < a.length; i++) {
+			for (int j = 0; j < a.length; j++) {
+				if (j != 0) {
+					if (a[j] < a[j - 1]) {
+						int temp = a[j];
+						a[j] = a[j - 1];
+						a[j - 1] = temp;
+					}
+
+				}
+			}
+		}
+		return a;
+	}
+
 }
+
+// abcd
+
+// a bcd
+// a bdc
+// a cbd
+// a cbd
+
+// a cbd
+// a cdb
+
+// a dcb
+// a dbc

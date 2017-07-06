@@ -26,29 +26,17 @@ public class ReverseLinkedList {
 	public static Node reverse(Node head) {
 		// 2,3,4
 
-		if (head != null && head.next != null) {
+		Node nextNode = head.next;
 
-			// 2
-			Node tmp1 = head;
-			Node tmp2 = null;
+		head.next = null;
 
-			// 3
-			head = tmp1.next;
-			tmp1.next = null;
-
-			tmp2 = head.next;
-
-			head.next = tmp1;
-
-			while (tmp2 != null) {
-
-				tmp1 = head;
-				head = tmp2;
-				tmp2 = head.next;
-				head.next = tmp1;
-
-			}
-
+		while (nextNode != null) {
+			Node tmp = nextNode;
+			nextNode = nextNode.next;
+			
+			tmp.next = head;
+			head=tmp;
+			
 		}
 
 		return head;

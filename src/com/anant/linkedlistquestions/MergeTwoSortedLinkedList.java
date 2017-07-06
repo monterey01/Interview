@@ -10,6 +10,13 @@ public class MergeTwoSortedLinkedList {
 
 	public static void main(String[] args) {
 
+		Integer n20 = new Integer(-333);
+
+		Integer n21 = new Integer(-333);
+
+		if (n20 == n21)
+			System.out.println("this is same");
+
 		Node n1 = new Node();
 		Node n2 = new Node();
 		Node n3 = new Node();
@@ -34,67 +41,67 @@ public class MergeTwoSortedLinkedList {
 		n5.next = n6;
 		n6.next = n7;
 
-		System.out.println(MergeLists(n1, n5));
+		System.out.println(mergeTwoLinkedLists(n1, n5));
 
 	}
-	
 
+	static Node mergeTwoLinkedLists(Node l1, Node l2) {
 
-	public static Node MergeLists(Node headA, Node headB) {
-		Node head = null;
+		Node result = null;
 		Node tail = null;
 
-		while (headA != null || headB != null) {
-			Node n = new Node();
+		while (!(l1 == null) || !(l2 == null)) {
 
-			if (headA != null && headB != null) {
+			Node tmp = null;
 
-				if (headB.data > headA.data) {
-					n.data = headA.data;
-					if (headA.next != null)
-						headA = headA.next;
-					else {
-						headA = null;
-					}
-				} else {
-					n.data = headB.data;
-					if (headB.next != null) {
-						headB = headB.next;
-					} else {
-						headB = null;
-					}
+			if (l1 != null && l2 != null) {
+
+				if (l1.data < l2.data) {
+					tmp = l1;
+					l1 = l1.next;
+				} else if (l2.data < l1.data) {
+					tmp = l2;
+					l2 = l2.next;
+				} else if (l2.data == l1.data) {
+					tmp = l1;
+					l1 = l1.next;
+
 				}
+
+			} else if (l1 != null) {
+				tmp = l1;
+				l1 = l1.next;
+			}
+
+			else if (l2 != null) {
+				tmp = l2;
+				l2 = l2.next;
+			}
+
+			if (tmp == null) {
+
+				if (l1 != null)
+					System.out.println(l1.data);
+				if (l2 != null)
+					System.out.println(l2.data);
+				System.out.println("tmp is null");
+			}
+
+			if (result == null) {
+				result = tmp;
+				tail = tmp;
+				result.next = null;
 			} else {
-				if (headA != null) {
-					n=headA;
-					if (headA.next != null)
-						{headA = headA.next;}
-					else{
-						headA=null;
-					}
-				}
-
-				if (headB != null) {
-					n=headB;
-					if (headB.next != null){
-						headB = headB.next;}
-					else{
-						headB=null;
-					}
+				if (tail != null && tmp != null) {
+					tmp.next = null;
+					tail.next = tmp;
+					tail = tail.next;
 				}
 			}
 
-			if (head == null) {
-				head = n;
-				tail = head;
-			} else {
-				tail.next = n;
-				tail = tail.next;
-			}
 		}
 
-		return head;
-
+		return result;
 	}
 
 }
