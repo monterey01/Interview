@@ -1,14 +1,15 @@
 package com.anant.dynamicprogramming;
 
-import java.util.Arrays;
-
 public class MaximumPathSum {
 
 	// Solution to http://www.mathblog.dk/project-euler-18/
 
+	
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int[][] i = new int[4][4];
+		int[][] m = new int[5][5];
 
 		i[0][0] = 3;
 		i[0][1] = 0;
@@ -30,11 +31,13 @@ public class MaximumPathSum {
 		i[3][2] = 9;
 		i[3][3] = 3;
 
-		System.out.println(bruteForceMaxSumPath(i, 0, 0, 0));
 		
+		
+		System.out.println(maxSumPath(i, 0, 0, 0,m));
+
 	}
 
-	public static int bruteForceMaxSumPath(int[][] i, int r, int pc, int ps) {
+	public static int maxSumPath(int[][] i, int r, int pc, int ps,int[][] m) {
 
 		int result = 0;
 
@@ -51,9 +54,14 @@ public class MaximumPathSum {
 			}
 
 			for (int j = startIndex; j <= endIndex && endIndex < i[0].length && i[r][j] > 0; j++) {
+				if (m[r][j]!=0) {
+					return m[r+1][j];
+							
+				}
 				int sum = 0;
-				sum = bruteForceMaxSumPath(i, r + 1, j, ps + i[r][j]);
+				sum = maxSumPath(i, r + 1, j, ps + i[r][j],m);
 				sum = Math.max(sum, result);
+				m[r+1][j]=sum;
 				result = sum;
 
 			}

@@ -1,27 +1,26 @@
 package com.anant.dynamicprogramming;
 
 public class FibonacciSeries {
+
+	static int[] loookup;
 	static int fib(int n) {
-		/* Declare an array to store Fibonacci numbers. */
-		int f[] = new int[n + 1];
-		int i;
-
-		/* 0th and 1st number of the series are 0 and 1 */
-		f[0] = 0;
-		f[1] = 1;
-
-		for (i = 2; i <= n; i++) {
-			/*
-			 * Add the previous 2 numbers in the series and store it
-			 */
-			f[i] = f[i - 1] + f[i - 2];
+		if (n == 1)
+			return 0;
+		else if (n == 2)
+			return 1;
+		else if(loookup[n]!=0){
+			return loookup[n];
 		}
-
-		return f[n];
+		else
+			loookup[n]= (fib(n - 1) + fib(n - 2));
+			return loookup[n];
+		
 	}
 
 	public static void main(String args[]) {
-		int n = 5;
+		int n = 5000;
+		loookup=new int[n+1];
 		System.out.println(fib(n));
 	}
 }
+// 0,1,1,2,3

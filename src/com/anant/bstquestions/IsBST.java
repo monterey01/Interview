@@ -2,27 +2,31 @@ package com.anant.bstquestions;
 
 public class IsBST {
 
+
 	public static void main(String[] args) {
+
+		
+
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
-				Node n, n1, n2, n3;
+		Node n, n1, n2, n3;
 
-				n = new Node();
-				n1 = new Node();
-				n2 = new Node();
-				n3 = new Node();
-			
-				n.setData(10);
-				n1.setData(5);
-				n2.setData(11);
-				n3.setData(7);
+		n = new Node();
+		n1 = new Node();
+		n2 = new Node();
+		n3 = new Node();
 
-				n.setLeft(n1);
+		n.setData(10);
+		n1.setData(5);
+		n2.setData(11);
+		n3.setData(7);
 
-				n.setRight(n2);
-				n1.setRight(n3);
+		n.setLeft(n1);
 
-				System.out.print(isBST(n,  Integer.MIN_VALUE,Integer.MAX_VALUE));
+		n.setRight(n2);
+		n1.setRight(n3);
+
+		System.out.print(isBST(n, Integer.MIN_VALUE, Integer.MAX_VALUE));
 
 	}
 
@@ -37,8 +41,6 @@ public class IsBST {
 
 		return (isBST(n.getRight(), Math.max(n.getData(), min), max)
 				&& isBST(n.getLeft(), min, Math.min(max, n.getData())));
-
-	
 
 	}
 
