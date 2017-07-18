@@ -31,7 +31,7 @@ public class Combination {
 	public static void main(String args[]) {
 		Combination c = new Combination();
 		// c.combination("abcd".toCharArray());
-		c.combinationEasy("abcde".toCharArray());
+		c.combinationEasy("123".toCharArray());
 
 	}
 

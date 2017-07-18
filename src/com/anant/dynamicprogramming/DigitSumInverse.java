@@ -2,40 +2,35 @@ package com.anant.dynamicprogramming;
 
 public class DigitSumInverse {
 
-	
-public static void main(String args[]){
-	
-	System.out.println(digitSumInverse(11,2));
-	
-}
-	
-public static int digitSumInverse(int sum, int numberLength) {
-     
-	int f[]=new int[sum+1];
-	
-    // first round of initiation 
-    for (int k = 0; k <= 9; k++) {
-        if (k <= sum) {
-            f[k] = 1;
-        }
-    }
-    
-    int total = f[sum]; // not 0 or 1
-    
-    for (int i = 2; i <= numberLength; i++) {
-        for (int j = sum; j >= 0; j--) {
-            int fij = 0;
-            for (int k = 0; k <= 9; k++) { // the last digit
-                if (j > k) { // the last digit could not equal to the sum
-                    fij += f[j-k]; 
-                }
-            }
-            f[j] = fij;
-        }
-        total += f[sum];
-    }
-    return total;
-}
+	// Solution to
+	// https://codefights.com/tournaments/od2Ak2LGvpg7dw6Aj/D/solutions/ARa39z9MpE8veoh66
+
+	public static void main(String args[]) {
+
+		// System.out.println(digitSumInverse(5, 1));
+		System.out.println(digitSumInverse(5, 2));
+
+	}
+
+	public static int digitSumInverse(int sum, int numberLength) {
+
+		if (sum == 0 && numberLength == 0)
+			return 1;
+		if (numberLength == 0)
+			return 0;
+
+		int result = 0;
+
+		for (int k = 0; k < 10; k++) {
+			if (sum - k >= 0) {
+				result+=digitSumInverse(sum - k,numberLength-1);
+			
+			}
+		}
+
+		return result;
+
+	}
 
 }
 
