@@ -2,11 +2,12 @@ package com.anant.queuesstacks;
 
 public class DecodeString {
 
+	//Solution to https://codefights.com/interview-practice/task/dYCH8sdnxGf5aGkez
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
 		long s= System.currentTimeMillis();
-	   System.out.println(decodeString("1[1[1[1[1[1[1[1[1[1[aaaaaaaaaaa]]]]]]]]]]"));
+	   System.out.println(decodeString("20[a20[b20[c20[d]]]]"));
 	   long j=System.currentTimeMillis();
 		System.out.println(j-s);
 
@@ -45,7 +46,7 @@ public class DecodeString {
 
 		int q = 0;
 		StringBuilder qs = new StringBuilder();
-		;
+		
 		for (int k = index; k < ca.length; k++) {
 			if (ca[k] == '[') {
 				index = k + 1;

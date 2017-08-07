@@ -8,41 +8,63 @@ public class Bitwise {
 
 		// System.out.println(additionBitwise(2, 4));
 
-		int[] i = { 2, 8, 9, 8, 2, 9, 10 };
-
-		int a = 1;
-
 		// System.out.println(insertBits(15, 0, 0, 1));
 
-		System.out.println(numberOf1Bits(648));
+		// System.out.println(numberOf1Bits(648));
 
 		// System.out.println(squareOfNumbersTothePowerofTwo(4));
 
+		System.out.println(getBit(13, 2));
+		System.out.println(setBit(9, 0, 0));
+		System.out.println(togglebit(9, 0));
+
 	}
+
+	static int getBit(int n, int position) {
+		return 1 & n >> position;
+
+	}
+
+	static int setBit(int n, int position, int bit) {
+		if (bit == 1)
+			n |= 1 << position;
+		if (bit == 0)
+			n &= ~(1 << position);
+
+		return n;
+	}
+	
+	static int togglebit(int n, int position) {
+		
+
+			n ^= (1 << position);
+
+		return n;
+	}
+
 
 	static int numberOf1Bits(int n) {
 		int res = 0;
 		while (n != 0) {
-			int maxInt=0;
-			int tmp=n;
-			boolean lessThanZero=false;
-			
-			while (lessThanZero==false){
-				if(tmp>=n){
-					tmp=tmp/2;
+			int maxInt = 0;
+			int tmp = n;
+			boolean lessThanZero = false;
+
+			while (lessThanZero == false) {
+				if (tmp >= n) {
+					tmp = tmp / 2;
 					++maxInt;
-				}
-				else{
-					lessThanZero=true;
+				} else {
+					lessThanZero = true;
 				}
 			}
-			
+
 			for (int i = maxInt; i > -1; i--) {
 				int j = n >> i & 1;
 				if (j == 1)
 					res++;
 			}
-		
+
 			n = 0;
 			res++;
 		}
@@ -67,7 +89,6 @@ public class Bitwise {
 		return n;
 
 	}
-
 
 	public static int additionBitwise(int i, int j) {
 

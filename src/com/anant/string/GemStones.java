@@ -1,4 +1,4 @@
-package com.anant.stringquestions;
+package com.anant.string;
 
 import java.util.HashMap;
 import java.util.HashSet;
