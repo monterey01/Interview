@@ -1,25 +1,23 @@
 package com.anant.dynamicprogramming;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class ClassicCoinProblem {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		System.out.println(coinChange(new int[] { 3,7,405,436 }, 8839));
-
-	}
-	class Memo{
-		int sum;
-		
+	static class Memo {
 		int index;
-		
-		int depth;
+		int sum;
+
+		public Memo(int index, int sum) {
+			this.index = index;
+			this.sum = sum;
+		}
 
 		@Override
 		public int hashCode() {
 			final int prime = 31;
 			int result = 1;
-			result = prime * result + getOuterType().hashCode();
-			result = prime * result + depth;
 			result = prime * result + index;
 			result = prime * result + sum;
 			return result;
@@ -34,10 +32,6 @@ public class ClassicCoinProblem {
 			if (getClass() != obj.getClass())
 				return false;
 			Memo other = (Memo) obj;
-			if (!getOuterType().equals(other.getOuterType()))
-				return false;
-			if (depth != other.depth)
-				return false;
 			if (index != other.index)
 				return false;
 			if (sum != other.sum)
@@ -45,52 +39,53 @@ public class ClassicCoinProblem {
 			return true;
 		}
 
-		private ClassicCoinProblem getOuterType() {
-			return ClassicCoinProblem.this;
-		}
-		
-		
-		
 	}
 
-	public static int coinChange(int[] coins, int amount) {
-		int result= minNumberOfCoins(coins, amount, 0, 0);
-		
+	public static void main(String[] args) {
+
+		long startTime = System.currentTimeMillis();
+
+		System.out.println(minNumberOfCoins(new int[] { 328, 122, 26, 397, 252, 455, 250, 252 }, 7121));
+		System.out.println(System.currentTimeMillis() - startTime);
+
+	}
+
+	public static int minNumberOfCoins(int[] coins, int amount) {
+		int result = minNumberOfCoins(coins, 0, amount, new HashMap<Memo, Integer>());
+
 		return result;
 	}
 
-	public static int minNumberOfCoins(int[] c, int sum, int index, int depth) {
-
+	public static int minNumberOfCoins(int[] c, int i, int sum, Map<Memo, Integer> map) {
 		int result = Integer.MAX_VALUE;
-		if (sum < 0) {
-			return -1;
-		}
+
+		if (sum < 0)
+			return Integer.MAX_VALUE;
+
 		if (sum == 0) {
-			return depth;
-		}
-		if (index >= c.length) {
-			return -1;
+			return 0;
 		}
 
-		int n1 = minNumberOfCoins(c, sum, index + 1, depth);
+		if (i >= c.length) {
+			return Integer.MAX_VALUE;
+		}
 
-		if (n1 == -1)
-			n1 = Integer.MAX_VALUE;
-		int n2 = minNumberOfCoins(c, sum - c[index], index + 1, depth + 1);
+		if (map.get(new Memo(sum, c[i])) != null) {
+			return map.get(new Memo(sum, c[i]));
+		}
 
-		int n3 = minNumberOfCoins(c, sum - c[index], index, depth + 1);
 
-		if (n3 == -1)
-			n3 = Integer.MAX_VALUE;
+		int n2 = sum - c[i] < 0 ? Integer.MAX_VALUE : Math.min(result, minNumberOfCoins(c, i, sum - c[i], map));
+		int n1 = sum - c[i] < 0 ? Integer.MAX_VALUE : Math.min(result, minNumberOfCoins(c, i + 1, sum, map));
 
-		if (n2 == -1)
-			n2 = Integer.MAX_VALUE;
 
-		result = Math.min(n1, n2);
-		result = Math.min(result, n3);
+		if (n2 < Integer.MAX_VALUE)
+			++n2;
 
-		if (result == Integer.MAX_VALUE)
-			result = -1;
+		result = Math.min(result, n1);
+		result = Math.min(result, n2);
+
+		map.put(new Memo(sum, c[i]), result);
 
 		return result;
 	}

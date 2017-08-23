@@ -1,4 +1,4 @@
-package com.anant.bstquestions;
+package com.anant.binarytree;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -18,57 +18,36 @@ public class Traversal {
 		Node n6 = new Node();
 		Node n7 = new Node();
 		Node n8 = new Node();
-		Node n9=new Node();
-		Node n10=new Node();
-		Node n11=new Node();
+		Node n9 = new Node();
+		Node n10 = new Node();
+		Node n11 = new Node();
 
-		n.setData(10);
-
-		// Left First
-		n1.setData(15);
+		n.setData(5);
+		n1.setData(10);
+		n2.setData(20);
+		n3.setData(30);
+	
+	
+		
 		n.setLeft(n1);
+		n1.setRight  (n2);
+		n2.setLeft(n3);
+	
 
-		n2.setData(3);
-		n1.setLeft(n2);
-
-		n3.setData(6);
-		n1.setRight(n3);
-
-		n4.setData(5);
-		n2.setLeft(n4);
-
-		n5.setData(30);
-		n.setRight(n5);
-
-		n6.setData(2);
-		n5.setRight(n6);
-
-		n7.setData(9);
-		n6.setLeft(n7);
-
-		n8.setData(8);
-		n6.setRight(n8);
-		
-		n9.setData(99);
-		n4.setLeft(n9);
-		
-		n10.setData(1100);
-		n4.setRight(n10);
-		
-		n11.setData(1200);
-		n8.setLeft(n11);
-		
-		System.out.println(" ");
-		// printPreOrder(n);
+	
+	
 
 		System.out.println(" ");
-		// printInOrder(n);
+		printPreOrder(n);
+
+		System.out.println(" ");
+		printInOrder(n);
 
 		System.out.println(" ");
 		// printPostOrder(n);
 
 		System.out.println(" ");
-		printSpiralTree(n);
+		// printSpiralTree(n);
 
 	}
 

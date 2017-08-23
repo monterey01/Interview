@@ -1,8 +1,8 @@
-package com.anant.bstquestions;
+package com.anant.binarytree;
 
 public class SortedArrayToBST {
 
-	static int i[] = { 1, 2};
+	static int i[] = {1,2 };
 
 	public static void main(String args[]) {
 

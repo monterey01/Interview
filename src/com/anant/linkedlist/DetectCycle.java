@@ -1,6 +1,6 @@
-package com.anant.linkedlistquestions;
+package com.anant.linkedlist;
 
-import com.anant.linkedlistquestions.Node;
+import com.anant.linkedlist.Node;
 
 public class DetectCycle {
 

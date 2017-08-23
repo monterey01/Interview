@@ -1,13 +1,10 @@
-package com.anant.bstquestions;
+package com.anant.binarytree;
 
-import java.util.Iterator;
-import java.util.PriorityQueue;
-import java.util.Queue;
+import com.anant.binarytree.Node;
 
 //Based on https://www.youtube.com/watch?v=ZM-sV9zQPEs&index=1&list=PLrmLmBdmIlpv_jNDXtJGYTPNQ2L1gdHxu
-public class HeightOfBinaryTree {
+public class Search {
 
-		
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Node n, n1, n2, n3, n4, n5, n6, n7, n8, n9;
@@ -26,52 +23,46 @@ public class HeightOfBinaryTree {
 		n.setData(10);
 
 		// Left First
-		n1.setData(15);
+		n1.setData(-5);
 		n.setLeft(n1);
 
-		n2.setData(3);
+		n2.setData(-10);
 		n1.setLeft(n2);
 
-		n3.setData(6);
+		n3.setData(0);
 		n1.setRight(n3);
-
+		
 		n4.setData(5);
-		n2.setLeft(n4);
-
+		n3.setRight(n4);
+		
 		n5.setData(30);
 		n.setRight(n5);
-
-		n6.setData(2);
+		
+		n6.setData(36);
 		n5.setRight(n6);
 
-		n7.setData(9);
-		n6.setLeft(n7);
+		System.out.println(searchBST(n,5));
 
-		n8.setData(8);
-		n6.setRight(n8);
 
-		System.out.println(hOfBST(n,0));
-	    
 	}
-	
-	public static int hOfBST(Node n,int h){
+
+	public static Node searchBST(Node n,int key) {
 		
-		if (n==null) return h;
-		int lh=0;
-		int rh=0;
 		
-		if (n.getLeft()!=null){
-			lh=hOfBST(n.getLeft(),0);
+		if (n==null) return null;
+		
+		if (n.getData()==key) return n;
+		
+		if(key<n.getData()){
+			return searchBST(n.getLeft(),key);
+		}
+		else{
+			return searchBST(n.getRight(),key);
 		}
 		
-		if (n.getRight()!=null){
-			rh=hOfBST(n.getRight(),0);
-		}
-		
-		h=Math.max(lh, rh) +1;
 		
 		
-		return h;
+
 	}
 
 

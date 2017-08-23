@@ -1,4 +1,4 @@
-package com.anant.linkedlistquestions;
+package com.anant.linkedlist;
 
 //Solution to http://www.crazyforcode.com/print-linked-list-elements-reverse-order/
 public class PrintInReverseOrder {

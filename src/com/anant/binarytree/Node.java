@@ -1,4 +1,4 @@
-package com.anant.bstquestions;
+package com.anant.binarytree;
 
 public class Node {
 
@@ -6,6 +6,13 @@ public class Node {
 	private Node left;
 	private Node right;
 
+	public Node() {
+		
+	}
+ public Node(int data) {
+		this.data=data;
+	}
+	
 	public int getData() {
 		return data;
 	}

@@ -18,12 +18,13 @@ public class Combination {
 			r.add(input[i]);
 			r = combinationEasy(input, i + 1, r);
 
+			
 			r.forEach(r1 -> System.out.print(r1 + " "));
 			System.out.println();
 
 			r.remove(r.size() - 1);
 		}
-
+ 
 		return r;
 
 	}
@@ -31,7 +32,7 @@ public class Combination {
 	public static void main(String args[]) {
 		Combination c = new Combination();
 		// c.combination("abcd".toCharArray());
-		c.combinationEasy("123".toCharArray());
+		c.combinationEasy("12".toCharArray());
 
 	}
 

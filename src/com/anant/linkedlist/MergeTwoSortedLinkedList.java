@@ -1,4 +1,4 @@
-package com.anant.linkedlistquestions;
+package com.anant.linkedlist;
 
 public class MergeTwoSortedLinkedList {
 

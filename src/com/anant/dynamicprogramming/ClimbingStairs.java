@@ -7,7 +7,7 @@ public class ClimbingStairs {
 
 	public static void main(String args[]) {
 
-		System.out.println(climbingStairs(42, new HashMap<Integer, Integer>()));
+		System.out.println(climbingStairs(3, new HashMap<Integer, Integer>()));
 
 	}
 

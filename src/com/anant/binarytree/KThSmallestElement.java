@@ -1,10 +1,11 @@
-package com.anant.bstquestions;
+package com.anant.binarytree;
 
-import com.anant.bstquestions.Node;
+import java.util.Stack;
 
 //Based on https://www.youtube.com/watch?v=ZM-sV9zQPEs&index=1&list=PLrmLmBdmIlpv_jNDXtJGYTPNQ2L1gdHxu
-public class Search {
+public class KThSmallestElement {
 
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Node n, n1, n2, n3, n4, n5, n6, n7, n8, n9;
@@ -31,38 +32,43 @@ public class Search {
 
 		n3.setData(0);
 		n1.setRight(n3);
-		
+
 		n4.setData(5);
 		n3.setRight(n4);
-		
+
 		n5.setData(30);
 		n.setRight(n5);
-		
+
 		n6.setData(36);
 		n5.setRight(n6);
+		
 
-		System.out.println(searchBST(n,5));
-
+		System.out.println(" ");
+		Stack<Integer> s=printInOrder(n,null);
+		
+		int i=3;
+		
+		while (i>0){
+			s.pop();
+			i--;
+		}
+		
+		System.out.println(s.pop());
 
 	}
+	public static Stack<Integer> printInOrder(Node n,Stack<Integer> s) {
 
-	public static Node searchBST(Node n,int key) {
-		
-		
-		if (n==null) return null;
-		
-		if (n.getData()==key) return n;
-		
-		if(key<n.getData()){
-			return searchBST(n.getLeft(),key);
+		if (s==null){
+			s= new Stack<Integer>();
 		}
-		else{
-			return searchBST(n.getRight(),key);
+		if (n != null) {
+			printInOrder(n.getLeft(),s);
+		
+			s.push(n.getData());
+			printInOrder(n.getRight(),s);
 		}
-		
-		
-		
 
+		return s;
 	}
 
 

@@ -1,4 +1,4 @@
-package com.anant.linkedlistquestions;
+package com.anant.linkedlist;
 
 //Solution to http://www.crazyforcode.com/merge-linked-list-linked-list-alternate-positions/
 public class MergeLinkedListAlternatePositions {

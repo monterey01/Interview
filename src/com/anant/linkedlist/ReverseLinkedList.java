@@ -1,4 +1,4 @@
-package com.anant.linkedlistquestions;
+package com.anant.linkedlist;
 
 //Solution for https://www.hackerrank.com/challenges/reverse-a-linked-list
 public class ReverseLinkedList {

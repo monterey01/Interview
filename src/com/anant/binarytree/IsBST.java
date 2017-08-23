@@ -1,4 +1,4 @@
-package com.anant.bstquestions;
+package com.anant.binarytree;
 
 public class IsBST {
 

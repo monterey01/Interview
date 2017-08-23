@@ -1,4 +1,4 @@
-package com.anant.bstquestions;
+package com.anant.binarytree;
 
 import java.util.LinkedList;
 import java.util.List;
