@@ -74,16 +74,13 @@ public class ClassicCoinProblem {
 			return map.get(new Memo(sum, c[i]));
 		}
 
-
-		int n2 = sum - c[i] < 0 ? Integer.MAX_VALUE : Math.min(result, minNumberOfCoins(c, i, sum - c[i], map));
-		int n1 = sum - c[i] < 0 ? Integer.MAX_VALUE : Math.min(result, minNumberOfCoins(c, i + 1, sum, map));
-
+		int n2 = minNumberOfCoins(c, i, sum - c[i], map);
+		int n1 = minNumberOfCoins(c, i + 1, sum, map);
 
 		if (n2 < Integer.MAX_VALUE)
 			++n2;
 
-		result = Math.min(result, n1);
-		result = Math.min(result, n2);
+		result = Math.min(n2, n1);
 
 		map.put(new Memo(sum, c[i]), result);
 

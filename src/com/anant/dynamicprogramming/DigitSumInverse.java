@@ -13,8 +13,8 @@ abstract class DigitSumInverse {
 
 		// System.out.println(digitSumInverse(5, 1));
 
-		System.out.println(digitSumInverse(8, 7));
-		System.out.println(digitSumInverse(8, 200,new HashMap<Memo, Integer>()) );
+		//System.out.println(digitSumInverse(27, 800));
+		System.out.println(digitSumInverse(27, 800,new HashMap<Memo, Integer>()) );
 
 		System.out.println(counter);
 
@@ -98,8 +98,8 @@ abstract class DigitSumInverse {
 		}
 
 		int result = 0;
-
-		for (int k = 0; k < 10; k++) {
+		int end=sum>9?9:sum;
+		for (int k = 0; k <= end; k++) {
 			++counter;
 			if (sum - k >= 0) {
 				result += digitSumInverse(sum - k, numberLength - 1, memoziation);

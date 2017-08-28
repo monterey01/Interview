@@ -23,19 +23,17 @@ public class Traversal {
 		Node n11 = new Node();
 
 		n.setData(5);
-		n1.setData(10);
-		n2.setData(20);
-		n3.setData(30);
-	
-	
-		
-		n.setLeft(n1);
-		n1.setRight  (n2);
-		n2.setLeft(n3);
-	
+		n1.setData(20);
+		n2.setData(100);
+		n3.setData(700);
+		n4.setData(900);
+		n5.setData(2000);
 
-	
-	
+		n.setLeft(n1);
+		n1.setLeft(n2);
+		n1.setRight(n3);
+		n2.setRight(n4);
+		n4.setLeft(n5);
 
 		System.out.println(" ");
 		printPreOrder(n);
