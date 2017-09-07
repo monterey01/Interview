@@ -70,9 +70,10 @@ public class LongestCommonSubsequence {
 
 		String s1 = "AGGTAB";
 		String s2 = "GXTXAYB";
-		
-		double test=(double)5/(double)2;
-		System.out.println(test);;
+
+		double test = (double) 5 / (double) 2;
+		System.out.println(test);
+		;
 
 		char[] X = s1.toCharArray();
 		char[] Y = s2.toCharArray();

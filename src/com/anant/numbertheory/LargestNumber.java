@@ -18,16 +18,15 @@ public class LargestNumber {
 
 			}
 
-			if (sb1.length() > 1 && sb2.length() > 1 || sb1.length() == 1 && sb2.length() > 1
-					|| sb1.length() > 1 && sb2.length() == 1) {
+			if (sb1.length() > 1 || sb2.length() > 1 && sb1.charAt(0) == sb2.charAt(0)) {
 
-				if (sb1.length() == 1 && sb2.length() > 1 && sb1.charAt(0) == sb2.charAt(0)) {
+				if (sb1.length() == 1 && sb2.length() > 1) {
 					return -1;
 				}
-				if (sb1.length() > 1 && sb2.length() == 1 && sb1.charAt(0) == sb2.charAt(0)) {
+				if (sb1.length() > 1 && sb2.length() == 1) {
 					return 1;
 				}
-				if (sb1.length() > 1 && sb2.length() > 1 && sb1.charAt(0) == sb2.charAt(0)) {
+				if (sb1.length() > 1 && sb2.length() > 1) {
 					int comparator = 0;
 
 					for (int i = 1, j = 1; i < sb1.length() && j < sb2.length(); i++, j++) {

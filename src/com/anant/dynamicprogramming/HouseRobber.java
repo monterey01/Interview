@@ -8,8 +8,7 @@ public class HouseRobber {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println(
-				findMaxRobbedMoney(new int[] { 1500, 15000, 1, 200, 400000 ,900000}, 0, new HashMap<Integer, Integer>()));
+		System.out.println(findMaxRobbedMoney(new int[] { 200, 60, 40, 80 }, 0, new HashMap<Integer, Integer>()));
 		System.out.println(counter);
 
 	}
@@ -19,15 +18,14 @@ public class HouseRobber {
 		if (index >= input.length)
 			return 0;
 
-		if (memoization.get(index) != null) {
-			return memoization.get(index);
-		}
+	
 
 		++counter;
 		int result = Math.max(input[index] + findMaxRobbedMoney(input, index + 2, memoization),
 				findMaxRobbedMoney(input, index + 1, memoization));
 		memoization.put(index, result);
 
+		System.out.println(result);;
 		return result;
 
 	}

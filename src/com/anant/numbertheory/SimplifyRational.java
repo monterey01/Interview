@@ -5,10 +5,8 @@ public class SimplifyRational {
 	// Solution to
 	// https://codefights.com/interview-practice/task/Q9iGesadet3hNj2qo
 	public static void main(String[] args) {
-		
-		
-		
-		System.out.println(5%2);
+
+		System.out.println(5 % 2);
 		// TODO Auto-generated method stub
 		simplifyRational(-18, 24);
 

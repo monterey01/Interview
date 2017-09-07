@@ -45,7 +45,7 @@ public class ClassicCoinProblem {
 
 		long startTime = System.currentTimeMillis();
 
-		System.out.println(minNumberOfCoins(new int[] { 328, 122, 26, 397, 252, 455, 250, 252 }, 7121));
+		System.out.println(minNumberOfCoins(new int[] { 3,5}, 13));
 		System.out.println(System.currentTimeMillis() - startTime);
 
 	}
@@ -81,6 +81,7 @@ public class ClassicCoinProblem {
 			++n2;
 
 		result = Math.min(n2, n1);
+
 
 		map.put(new Memo(sum, c[i]), result);
 
