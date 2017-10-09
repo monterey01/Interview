@@ -6,6 +6,8 @@ import java.util.Stack;
 
 //Based on https://www.youtube.com/watch?v=ZM-sV9zQPEs&index=1&list=PLrmLmBdmIlpv_jNDXtJGYTPNQ2L1gdHxu
 public class Traversal {
+	
+	//1,2,3,4,5,6
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

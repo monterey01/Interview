@@ -4,12 +4,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DecodeMessage {
+	
+	static int counter=0;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		System.out.println(numDecodings("222"));
-		System.out.println(numImp("", 0));
+		System.out.println(numDecodings("291"));
+		System.out.println(numImp("291", 0));
+		System.out.println(counter);
 	}
 
 	public static int numDecodings(String decodedMessage) {
@@ -27,10 +30,11 @@ public class DecodeMessage {
 		}
 
 		if (memo.get(position) != null) {
-			System.out.println("hello" + position);
+			
 			return memo.get(position);
 		}
-		;
+		
+		++counter;
 
 		if (position + 1 <= decodedMessage.length()) {
 			Integer oneCharacter = Integer.parseInt(decodedMessage.substring(position, position + 1));

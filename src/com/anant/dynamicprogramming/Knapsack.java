@@ -8,7 +8,43 @@ public class Knapsack {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		System.out.println(maxSum(new int[] { 9, 4, 4, 9, 4, 9, 9, 9, 9 }, 0, 10, 0, new HashMap<Memo, Integer>()));
+		int nItems = 4;
+		int knapsackSize = 10;
+		int weights[] = new int[] { 5, 4, 6, 3 };
+		int values[] = new int[] { 10, 40, 30, 50 };
+
+		System.out.println(knapsack(nItems - 1, knapsackSize, weights, values));
+
+	}
+
+	static int matrix[][] = new int[100][100];
+
+	static int knapsack(int index, int size, int weights[], int values[]) {
+		int take, dontTake;
+
+		take = dontTake = 0;
+
+		if (matrix[index][size] != 0)
+			return matrix[index][size];
+
+		if (index == 0) {
+			if (weights[0] <= size) {
+				matrix[index][size] = values[0];
+				return values[0];
+			} else {
+				matrix[index][size] = 0;
+				return 0;
+			}
+		}
+
+		if (weights[index] <= size)
+			take = values[index] + knapsack(index - 1, size - weights[index], weights, values);
+
+		dontTake = knapsack(index - 1, size, weights, values);
+
+		matrix[index][size] = Math.max(take, dontTake);
+
+		return matrix[index][size];
 
 	}
 
@@ -70,13 +106,13 @@ public class Knapsack {
 
 		int tmpResult2 = maxSum(elements, index, sum, previousResult + elements[index], memoziation);
 
+		int tmpResult1 = maxSum(elements, index + 1, sum, previousResult, memoziation);
+
 		if (tmpResult2 == -1) {
 			tmpResult2 = previousResult + elements[index];
 		} else if (tmpResult2 == -2) {
 			tmpResult2 = previousResult;
 		}
-
-		int tmpResult1 = maxSum(elements, index + 1, sum, previousResult, memoziation);
 
 		int result = Math.max(tmpResult1, tmpResult2);
 

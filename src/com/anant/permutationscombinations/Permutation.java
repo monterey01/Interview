@@ -12,9 +12,7 @@ public class Permutation {
 		for (int i = si; i < c.length; i++) {
 
 			swap(c, si, i);
-			{
-				permute(c, si + 1);
-			}
+			permute(c, si + 1);
 			swap(c, si, i);
 		}
 
@@ -29,12 +27,9 @@ public class Permutation {
 		return s;
 
 	}
-	
-	//ABCD
-	
-	 
 
-	 
+	// ABCD
+
 	public static void main(String[] args) {
 
 		System.out.println(System.currentTimeMillis());

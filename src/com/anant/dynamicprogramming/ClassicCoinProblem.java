@@ -1,6 +1,8 @@
 package com.anant.dynamicprogramming;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ClassicCoinProblem {
@@ -45,7 +47,7 @@ public class ClassicCoinProblem {
 
 		long startTime = System.currentTimeMillis();
 
-		System.out.println(minNumberOfCoins(new int[] { 3,5}, 13));
+		System.out.println(minNumberOfCoins(new int[] { 1, 2, 5 }, 10));
 		System.out.println(System.currentTimeMillis() - startTime);
 
 	}
@@ -82,10 +84,60 @@ public class ClassicCoinProblem {
 
 		result = Math.min(n2, n1);
 
-
 		map.put(new Memo(sum, c[i]), result);
 
 		return result;
+	}
+
+	public static List<Integer> getListMinNumberOfCoins(int[] c, int i, int sum, Map<Memo, List<Integer>> map) {
+
+		if (sum < 0 || i >= c.length)
+			return null;
+
+		if (sum == 0) {
+			return new ArrayList<Integer>();
+		}
+
+		Memo memo = new Memo(i, sum);
+
+		if (map.containsKey(memo)) {
+			return map.get(memo);
+		}
+
+		List<Integer> n2 = getListMinNumberOfCoins(c, i, sum - c[i], map);
+		List<Integer> n1 = getListMinNumberOfCoins(c, i + 1, sum, map);
+
+		if (n1 == null && n2 == null) {
+			map.put(memo, null);
+			return null;
+		}
+
+		if ((n1 == null && n2 != null)) {
+			List<Integer> tmpList = new ArrayList<Integer>(n2);
+			tmpList.add(0, c[i]);
+			map.put(memo, tmpList);
+			return tmpList;
+		}
+		if (n1 != null && n2 == null) {
+			map.put(memo, n1);
+			return n1;
+		}
+
+		if ((n2.size() < n1.size())) {
+			List<Integer> tmpList = new ArrayList<Integer>(n2);
+			tmpList.add(0, c[i]);
+			map.put(memo, tmpList);
+			return tmpList;
+		}
+
+		if ((n1.size() < n2.size()) || (n2.size() == n1.size())) {
+			map.put(memo, n1);
+			return n1;
+		}
+
+		map.put(memo, null);
+		return null;
+
 	}
 
 }

@@ -53,7 +53,7 @@ public class LongestCommonSubsequence {
 		if (X[m - 1] == Y[n - 1])
 			result = 1 + lcs(X, Y, m - 1, n - 1, memoziation);
 		else
-			result = max(lcs(X, Y, m, n - 1, memoziation), lcs(X, Y, m - 1, n, memoziation));
+			result = Math.max(lcs(X, Y, m, n - 1, memoziation), lcs(X, Y, m - 1, n, memoziation));
 
 		Memo memo = new Memo(m, n);
 		memoziation.put(memo, result);
@@ -61,19 +61,10 @@ public class LongestCommonSubsequence {
 		return result;
 	}
 
-	/* Utility function to get max of 2 integers */
-	static int max(int a, int b) {
-		return (a > b) ? a : b;
-	}
-
 	public static void main(String[] args) {
 
-		String s1 = "AGGTAB";
-		String s2 = "GXTXAYB";
-
-		double test = (double) 5 / (double) 2;
-		System.out.println(test);
-		;
+		String s1 = "4312";
+		String s2 = "432";
 
 		char[] X = s1.toCharArray();
 		char[] Y = s2.toCharArray();
