@@ -58,42 +58,8 @@ public class ThreeSum {
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
-		int[] nums = { 7, 5, -8, -6, -13, 7, 10, 1, 1, -4, -14, 0, -1, -10, 1, -13, -4, 6, -11, 8, -6, 0, 0, -5, 0, 11,
-				-9, 8, 2, -6, 4, -14, 6, 4, -5, 0, -12, 12, -13, 5, -6, 10, -10, 0, 7, -2, -5, -12, 12, -9, 12, -9, 6,
-				-11, 1, 14, 8, -1, 7, -13, 8, -11, -11, 0, 0, -1, -15, 3, -11, 9, -7, -10, 4, -2, 5, -4, 12, 7, -8, 9,
-				14, -11, 7, 5, -15, -15, -4, 0, 0, -11, 3, -15, -15, 7, 0, 0, 13, -7, -12, 9, 9, -3, 14, -1, 2, 5, 2,
-				-9, -3, 1, 7, -12, -3, -1, 1, -2, 0, 12, 5, 7, 8, -7, 7, 8, 7, -15 };
-
-		// int[] nums= {-1, 0, 1, 2, -1};
-
-		// int[] nums = { -9, -1, 8, 10, 10 };
-
-		List<List<Integer>> tmpResultList = new ArrayList<List<Integer>>();
-		Set<String> uniqueResult = new HashSet<String>();
-		List<List<Integer>> resultList = new ArrayList<List<Integer>>();
-
-		tmpResultList = numberOfCombinationsEqualToZero(nums, 0, 0, 0, new HashMap<Memo, List<List<Integer>>>());
-
-		if (tmpResultList != null) {
-			for (List<Integer> result : tmpResultList) {
-				Collections.sort(result);
-				StringBuilder sb = new StringBuilder();
-				for (int value : result) {
-					sb.append(value);
-				}
-				String tmpValue = sb.toString();
-				if (!uniqueResult.contains(tmpValue)) {
-
-					uniqueResult.add(tmpValue);
-					resultList.add(result);
-				}
-
-			}
-		}
-
-		System.out.println(uniqueResult);
+		System.out.println(validIPAddress("2001:05a3:85a3:8A2E:8A2E:3370:7334"));
 
 	}
 
@@ -155,6 +121,88 @@ public class ThreeSum {
 		memoization.put(memo, resultList);
 
 		return resultList;
+	}
+	
+	
+
+	public  static String validIPAddress(String IP) {
+
+		// Check if
+
+		if (isIP4Address(IP))
+			return "IPv4";
+		if (isIP6Address(IP))
+			return "IPv6";
+
+		return "";
+
+	}
+
+	private static boolean isIP4Address(String IP) {
+		String[] ip4ca = IP.split("\\.");
+
+		if (ip4ca.length == 4) {
+			for (int i = 0; i < ip4ca.length; i++) {
+				boolean hasNonZero = false;
+
+				char[] tmpca = ip4ca[i].toCharArray();
+				if (tmpca.length == 0)
+					return false;
+				int j = 0;
+				while (j < tmpca.length) {
+					if (!(Character.isDigit(tmpca[j])))
+						return false;
+					if (tmpca[j] != '0')
+						hasNonZero = true;
+					if (tmpca[j] == '0' && !hasNonZero)
+						return false;
+
+					j++;
+				}
+
+				if (!(Integer.parseInt(ip4ca[i]) > -1 && Integer.parseInt(ip4ca[i]) < 256))
+					return false;
+				if (i == 3)
+					return true;
+			}
+		}
+		return false;
+
+	}
+
+	private static boolean isIP6Address(String IP) {
+		String[] ip6ca = IP.split("\\:");
+
+		if (ip6ca.length == 7) {
+
+			for (int i = 0; i < ip6ca.length; i++) {
+				boolean hasNonZero = false;
+				char[] tmpca = ip6ca[i].toCharArray();
+
+				if (tmpca.length == 0)
+					return false;
+				int j = 0;
+				while (j < tmpca.length) {
+					char c = tmpca[j];
+					c = Character.toLowerCase(c);
+
+					if (!(Character.isDigit(c) || c == 'a' || c == 'b' || c == 'c' || c == 'd' || c == 'e'))
+						return false;
+					if (c == 'a' || c == 'b' || c == 'c' || c == 'd' || c == 'e' || (Character.isDigit(c) && c!='0'))
+						hasNonZero = true;
+
+					if (tmpca[j] == '0' && !hasNonZero)
+						return false;
+					++j;
+				}
+
+				if (i == 6)
+					return true;
+			}
+
+		}
+		return false;
+
 	}
 
 }

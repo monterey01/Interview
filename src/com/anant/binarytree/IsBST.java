@@ -39,9 +39,15 @@ public class IsBST {
 			return false;
 		}
 
-		return (isBST(n.getRight(), Math.max(n.getData(), min), max)
-				&& isBST(n.getLeft(), min, Math.min(max, n.getData())));
+		return (isBST(n.getRight(), n.getData(), max)
+				&& isBST(n.getLeft(), min, n.getData()));
 
 	}
+	
+	/**
+	 *    8
+	 *  6
+	 *   10
+	 */
 
 }

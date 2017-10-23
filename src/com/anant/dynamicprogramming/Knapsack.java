@@ -21,21 +21,10 @@ public class Knapsack {
 
 	static int knapsack(int index, int size, int weights[], int values[]) {
 		int take, dontTake;
+		
+		if(index<0 || index >=weights.length) return 0;
 
 		take = dontTake = 0;
-
-		if (matrix[index][size] != 0)
-			return matrix[index][size];
-
-		if (index == 0) {
-			if (weights[0] <= size) {
-				matrix[index][size] = values[0];
-				return values[0];
-			} else {
-				matrix[index][size] = 0;
-				return 0;
-			}
-		}
 
 		if (weights[index] <= size)
 			take = values[index] + knapsack(index - 1, size - weights[index], weights, values);

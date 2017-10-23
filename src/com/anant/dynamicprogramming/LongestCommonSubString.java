@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /* A Naive recursive implementation of LCS problem in java*/
-public class LongestCommonSubsequence {
+public class LongestCommonSubString {
 
 	static class Memo {
 
@@ -42,20 +42,31 @@ public class LongestCommonSubsequence {
 	static int lcs(char[] X, char[] Y, int m, int n, Map<Memo, Integer> memoziation) {
 
 		int result = 0;
+		int result1 = 0;
+		int result2 = 0;
 
-		if (m == 0 || n == 0)
+		if (m >= X.length || n >= Y.length)
 			return 0;
 
-		if (memoziation.containsKey(new Memo(m, n))) {
-			return memoziation.get(new Memo(m, n));
+		Memo memo = new Memo(m, n);
+		if (memoziation.containsKey(memo)) {
+				return memoziation.get(memo);
 		}
 
-		if (X[m - 1] == Y[n - 1])
-			result = 1 + lcs(X, Y, m - 1, n - 1, memoziation);
-		else
-			result = Math.max(lcs(X, Y, m, n - 1, memoziation), lcs(X, Y, m - 1, n, memoziation));
+		if (X[m] == Y[n]) {
+			result1 = 1;
+		}
 
-		Memo memo = new Memo(m, n);
+		if (m + 1 < X.length && n + 1 < Y.length) {
+			if (result1 == 1 && X[m + 1] == Y[n + 1]) {
+				result1 += lcs(X, Y, m + 1, n + 1, memoziation);
+			} else {
+				result2 = Math.max(lcs(X, Y, m, n + 1, memoziation), lcs(X, Y, m + 1, n, memoziation));
+			}
+		}
+
+		result = Math.max(result1, result2);
+
 		memoziation.put(memo, result);
 
 		return result;
@@ -63,15 +74,13 @@ public class LongestCommonSubsequence {
 
 	public static void main(String[] args) {
 
-		String s1 = "4321";
-		String s2 = "4327";
+		String s1 = "abicde";
+		String s2 = "cdeiab";
 
 		char[] X = s1.toCharArray();
 		char[] Y = s2.toCharArray();
-		int m = X.length;
-		int n = Y.length;
 
-		System.out.println("Length of LCS is" + " " + lcs(X, Y, m, n, new HashMap<Memo, Integer>()));
+		System.out.println("Length of LCS is" + " " + lcs(X, Y, 0, 0, new HashMap<Memo, Integer>()));
 	}
 
 }

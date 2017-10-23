@@ -18,6 +18,9 @@ public class HouseRobber {
 		if (index >= input.length)
 			return 0;
 
+		if(	memoization.containsKey(index)) {
+			return memoization.get(index);
+		}
 	
 
 		++counter;

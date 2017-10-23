@@ -5,6 +5,8 @@ import java.util.Stack;
 public class TowerOfHanoi {
 
 	public static void solve(int n, Stack<Integer> source, Stack<Integer> auxiliary, Stack<Integer> destination) {
+		System.out.println(n);
+		
 		if (n == 1) {
 			destination.push(source.pop());
 		} else {

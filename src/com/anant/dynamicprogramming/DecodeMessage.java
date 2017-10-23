@@ -10,8 +10,8 @@ public class DecodeMessage {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		System.out.println(numDecodings("291"));
-		System.out.println(numImp("291", 0));
+		System.out.println(numDecodings("222"));
+	
 		System.out.println(counter);
 	}
 

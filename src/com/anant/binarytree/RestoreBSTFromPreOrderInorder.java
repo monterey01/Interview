@@ -28,7 +28,8 @@ public class RestoreBSTFromPreOrderInorder {
 		int inOrderIndex = findInorderIndex(inOrder, start, end, preorder[index]);
 
 		n.setLeft(buildBSTFromPreOrderInorder(preorder, inOrder, index + 1, start, inOrderIndex - 1));
-		n.setRight(buildBSTFromPreOrderInorder(preorder, inOrder, index + 1, 1 + inOrderIndex, end));
+		n.setRight(buildBSTFromPreOrderInorder(preorder, inOrder, index + inOrderIndex - start + 1, 1 + inOrderIndex,
+				end));
 
 		return n;
 	}

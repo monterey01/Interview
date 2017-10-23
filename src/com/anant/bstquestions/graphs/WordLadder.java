@@ -1,100 +1,97 @@
 package com.anant.bstquestions.graphs;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
+import java.util.Set;
 
 class WordLadder {
 	static int counter = 0;
 
-	
-	//Solution to WordLadder https://leetcode.com/problems/word-ladder/description/
+	// Solution to WordLadder https://leetcode.com/problems/word-ladder/description/
 	public static void main(String[] args) {
 		/**
 		 * beginWord = "hit" endWord = "cog" wordList = ["hot","cog"]
-		 * 
+		 * "hot"
+"dog"
+["hot","cog","dog","tot","hog","hop","pot","dot"]
 		 **/
 
-		String beginWord = "hit";
-		String endWord = "cog";
+		String beginWord = "hot";
+		String endWord = "dog";
 		// wordList = ["hot","dot","dog","lot","log","cog"]
 
 		List<String> wordList = new ArrayList<String>();
 		wordList.add("hot");
-		wordList.add("dog");
-		wordList.add("dot");
-		wordList.add("lot");
-		wordList.add("log");
 		wordList.add("cog");
+		wordList.add("dog");
+		wordList.add("tot");
+		wordList.add("hog");
+		wordList.add("hop");
+		wordList.add("pot");
+		wordList.add("dot");
+		
 
-		boolean[] isVisited = new boolean[wordList.size()];
-
-		System.out.println(ladderLength(beginWord, endWord, wordList, 0, isVisited, new ArrayList<String>(),
-				new HashMap<Integer, Integer>()));
-		System.out.println(counter);
+		System.out.println(ladderLength(beginWord, endWord, wordList));
 
 	}
 
-	public static int ladderLength(String beginWord, String endWord, List<String> wordList, int number,
-			boolean[] isVisited, List<String> ls, HashMap<Integer, Integer> map) {
-		int result = Integer.MAX_VALUE;
+	static class Node {
+		int level;
+		String s;
 
-		for (int i = 0; i < wordList.size(); i++) {
+		public Node(int level, String s) {
+			this.level = level;
+			this.s = s;
+		}
 
-			String tmp = wordList.get(i);
-			++counter;
+	}
 
-			if (!isVisited[i] && oneCharacterdiff(beginWord, tmp)) {
+	public static int ladderLength(String beginWord, String endWord, List<String> wordList) {
+		int result = 0;
 
-				if (map.containsKey(i)) {
-					int result12 = map.get(i);
-					if (result12 > 0 && result12 < Integer.MAX_VALUE)
-						++result12;
-					if (result12 == -1)
-						result12 = 2;
-					result = Math.min(result12, result);
-					continue;
+		Queue<Node> q = new LinkedList<Node>();
+		Set<String> isVisited = new HashSet<String>();
+
+		q.add(new Node(1, beginWord));
+		
+
+		while (!q.isEmpty()) {
+			Node tmp = q.remove();
+
+			char[] ca = tmp.s.toCharArray();
+
+			for (int i = 0; i < wordList.size(); i++) {
+				if (!(isVisited.contains(wordList.get(i)))) {
+
+					char[] ca1 = wordList.get(i).toCharArray();
+					int diffChar = 0;
+
+					for (int j = 0; j < tmp.s.length(); j++) {
+						if (ca[j] != ca1[j]) {
+							++diffChar;
+						}
+					}
+					if (diffChar <= 1) {
+						if (wordList.get(i).equals(endWord))
+							return tmp.level + 1;
+						q.add(new Node(tmp.level + 1, wordList.get(i)));
+						isVisited.add(wordList.get(i));
+
+					}
+
 				}
 
-				if (tmp.equals(endWord)) {
-					System.out.println(number + "," + ls);
-					return -1;
-				}
-
-				ls.add(tmp);
-				isVisited[i] = true;
-				int result1 = (ladderLength(tmp, endWord, wordList, number + 1, isVisited, ls, map));
-
-				if (result1 > 0 && result1 < Integer.MAX_VALUE)
-					++result1;
-				if (result1 == -1)
-					result1 = 2;
-
-				result = Math.min(result1, result);
-				ls.remove(ls.size() - 1);
-				isVisited[i] = false;
-				map.put(i, result);
-				System.out.println(map);
 			}
 
 		}
-		
 
 		return result;
+
+		// "hit" -> "hot" -> "dot" -> "dog" -> "cog"
+
 	}
 
-	public static boolean oneCharacterdiff(String a, String b) {
-		int diff = 0;
-		char[] c = a.toCharArray();
-		char[] c1 = b.toCharArray();
-
-		for (int i = 0; i < c.length; i++) {
-			if (c[i] != c1[i])
-				++diff;
-			if (diff > 1)
-				return false;
-		}
-
-		return true;
-	}
 }
