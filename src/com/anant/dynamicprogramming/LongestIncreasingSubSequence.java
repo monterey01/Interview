@@ -1,5 +1,6 @@
 package com.anant.dynamicprogramming;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,46 +8,54 @@ public class LongestIncreasingSubSequence {
 	static int counter = 0;
 
 	public static void main(String args[]) {
-		int result = getLongestIncreasingSubarray(new int[] { 1, 7, 2, 3, 4, 8,}, 0, -1, new HashMap<Integer, Integer>());
+		int[][] m=new int[8][8];
 
-		if (result > 0)
-			++result;
+		for (int i = 0; i < m.length; i++) {
+			Arrays.fill(m[i],Integer.MIN_VALUE);
+		}
+		
+
+		int result = getLongestIncreasingSubSeq(new int[] { 10,9,2,5,3,7,101,18}, 0, -1, m);
+
+
+		for (int i = 0; i < m.length; i++) {
+			for (int j = 0; j < m.length; j++) {
+					System.out.print(m[i][j] +",");
+			}
+			System.out.println();
+		}
+		
 		System.out.println(result);
 		System.out.println(counter);
 
 	}
 
-	public static int getLongestIncreasingSubarray(int[] input, int index, int previousIndex,
-			Map<Integer, Integer> memoziation) {
+	public static int getLongestIncreasingSubSeq(int[] input, int i, int j, int[][] m) {
 
 		int result = 0;
 
-		if (index >= input.length)
+		if (i == input.length)
 			return 0;
-
-		if (memoziation.containsKey(index)) {
-			return memoziation.get(index);
-		}
-		++counter;
 
 		int result1 = 0;
 		int result2 = 0;
 
-		if (previousIndex == -1 || input[index] - input[previousIndex] == 1) {
 
-			result2 = getLongestIncreasingSubarray(input, index + 1, index, memoziation);
-			if (result2 > 0)
-				++result2;
-			if (previousIndex != -1 && result2 == 0 && input[index] - input[previousIndex] == 1)
-				++result2;
-
+		int jValue=(j==-1)?i:j;
+		if(m[i][jValue]!=Integer.MIN_VALUE) {
+			return m[i][jValue];
 		}
+		
+		++counter;
+		
+		if (j==-1||input[i] > input[j])
+			result2 = 1 + getLongestIncreasingSubSeq(input, i + 1, i, m);
 
-		result1 = getLongestIncreasingSubarray(input, index + 1, index, memoziation);
+		result1 = getLongestIncreasingSubSeq(input, i + 1, j, m);
 
 		result = Math.max(result1, result2);
 
-		memoziation.put(index, result);
+		m[i][jValue]=result;
 		return result;
 	}
 

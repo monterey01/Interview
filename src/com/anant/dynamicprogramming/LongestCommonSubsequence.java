@@ -58,13 +58,14 @@ public class LongestCommonSubsequence {
 		Memo memo = new Memo(m, n);
 		memoziation.put(memo, result);
 
+	
 		return result;
 	}
 
 	public static void main(String[] args) {
 
-		String s1 = "4321";
-		String s2 = "4327";
+		String s1 = "abcf";
+		String s2 = "bcaf";
 
 		char[] X = s1.toCharArray();
 		char[] Y = s2.toCharArray();

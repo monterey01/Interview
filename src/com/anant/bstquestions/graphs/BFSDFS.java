@@ -36,7 +36,8 @@ public class BFSDFS {
 		nodes.add(node60);
 		nodes.add(node50);
 		nodes.add(node70);
-		int adjacency_matrix[][] = { { 0, 1, 1, 0, 0, 0, 0 }, // Node 1: 40
+		int adjacency_matrix[][] = 
+			  { { 0, 1, 1, 0, 0, 0, 0 }, // Node 1: 40
 				{ 0, 0, 0, 1, 0, 0, 0 }, // Node 2 :10
 				{ 0, 1, 0, 1, 1, 1, 0 }, // Node 3: 20
 				{ 0, 0, 0, 0, 1, 0, 0 }, // Node 4: 30
@@ -46,14 +47,13 @@ public class BFSDFS {
 		};
 
 		dfs(adjacency_matrix, node40);
-		
-		for (Node node:nodes){
-			node.visited=false;
+
+		for (Node node : nodes) {
+			node.visited = false;
 		}
-		
-		
+
 		bfs(adjacency_matrix, node40);
-	
+
 	}
 
 	public static List<Node> getNeighbors(int[][] adjacency_matrix, Node n) {
@@ -90,7 +90,7 @@ public class BFSDFS {
 			List<Node> neighbours = getNeighbors(adjacency_matrix, e);
 			for (int i = 0; i < neighbours.size(); i++) {
 				Node tn = neighbours.get(i);
-				if (tn!= null && !tn.visited) {
+				if (tn != null && !tn.visited) {
 					q.add(tn);
 					tn.visited = true;
 				}
@@ -98,7 +98,7 @@ public class BFSDFS {
 			}
 		}
 	}
-	
+
 	public static void dfs(int[][] adjacency_matrix, Node n) {
 		System.out.println();
 		Stack<Node> s = new Stack<Node>();
@@ -111,7 +111,7 @@ public class BFSDFS {
 			List<Node> neighbours = getNeighbors(adjacency_matrix, e);
 			for (int i = 0; i < neighbours.size(); i++) {
 				Node tn = neighbours.get(i);
-				if (tn!= null && !tn.visited) {
+				if (tn != null && !tn.visited) {
 					s.add(tn);
 					tn.visited = true;
 				}

@@ -50,28 +50,26 @@ public class HeightOfBinaryTree {
 		n8.setData(8);
 		n6.setRight(n8);
 
-		System.out.println(hOfBST(n,0));
+		System.out.println(hOfBST(n));
 	    
 	}
 	
-	public static int hOfBST(Node n,int h){
+	public static int hOfBST(Node n){
 		
-		if (n==null) return h;
-		int lh=0;
-		int rh=0;
-		
-		if (n.getLeft()!=null){
-			lh=hOfBST(n.getLeft(),0);
-		}
-		
-		if (n.getRight()!=null){
-			rh=hOfBST(n.getRight(),0);
-		}
-		
-		h=Math.max(lh, rh) +1;
-		
-		
-		return h;
+ 
+        if(n==null) return 0;
+        if(n.getLeft()==null && n.getRight()==null){
+             return 0;
+        }
+        
+        int lh=0;
+        int rh=0;
+        
+        if(n.getLeft()!=null)lh=hOfBST(n.getLeft())+1;
+        if(n.getRight()!=null)rh=hOfBST(n.getRight())+1; 
+        
+        return Math.max(lh,rh);
+        
 	}
 
 

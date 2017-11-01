@@ -15,7 +15,7 @@ public class Permutation {
 			permute(c, si + 1);
 			swap(c, si, i);
 		}
-
+		
 	}
 
 	private static char[] swap(char[] s, int i, int j) {

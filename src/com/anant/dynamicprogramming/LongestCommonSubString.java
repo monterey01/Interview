@@ -39,7 +39,7 @@ public class LongestCommonSubString {
 	}
 
 	/* Returns length of LCS for X[0..m-1], Y[0..n-1] */
-	static int lcs(char[] X, char[] Y, int m, int n, Map<Memo, Integer> memoziation) {
+	static int lcs(char[] X, char[] Y, int m, int n, boolean prevMatch, Map<Memo, Integer> memoziation) {
 
 		int result = 0;
 		int result1 = 0;
@@ -50,37 +50,35 @@ public class LongestCommonSubString {
 
 		Memo memo = new Memo(m, n);
 		if (memoziation.containsKey(memo)) {
-				return memoziation.get(memo);
+			return memoziation.get(memo);
 		}
 
-		if (X[m] == Y[n]) {
-			result1 = 1;
-		}
-
-		if (m + 1 < X.length && n + 1 < Y.length) {
-			if (result1 == 1 && X[m + 1] == Y[n + 1]) {
-				result1 += lcs(X, Y, m + 1, n + 1, memoziation);
-			} else {
-				result2 = Math.max(lcs(X, Y, m, n + 1, memoziation), lcs(X, Y, m + 1, n, memoziation));
-			}
+		{
+			if (X[m] == Y[n]) {
+				result1 = 1;
+				if (m + 1 < X.length && n + 1 < Y.length && X[m + 1] == Y[n + 1]) {
+					result1 += lcs(X, Y, m + 1, n + 1, true,memoziation);
+				}
+			} 
+			if(!prevMatch)result2 = Math.max(lcs(X, Y, m, n + 1,prevMatch, memoziation), lcs(X, Y, m + 1, n,prevMatch, memoziation));
+			
 		}
 
 		result = Math.max(result1, result2);
-
-		memoziation.put(memo, result);
+		memoziation.put(memo,result);
 
 		return result;
 	}
 
 	public static void main(String[] args) {
 
-		String s1 = "abicde";
-		String s2 = "cdeiab";
+		String s1 = "ab22222x888";
+		String s2 = "888dee22222";
 
 		char[] X = s1.toCharArray();
 		char[] Y = s2.toCharArray();
 
-		System.out.println("Length of LCS is" + " " + lcs(X, Y, 0, 0, new HashMap<Memo, Integer>()));
+		System.out.println("Length of LCS is" + " " + lcs(X, Y, 0, 0,false, new HashMap<Memo, Integer>()));
 	}
 
 }
