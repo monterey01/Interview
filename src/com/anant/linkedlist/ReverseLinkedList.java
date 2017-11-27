@@ -1,5 +1,13 @@
 package com.anant.linkedlist;
 
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.Stack;
+
 //Solution for https://www.hackerrank.com/challenges/reverse-a-linked-list
 public class ReverseLinkedList {
 
@@ -18,29 +26,47 @@ public class ReverseLinkedList {
 		n1.next = n2;
 		n2.next = n3;
 		n3.next = n4;
-
-		System.out.println(reverse(n1).toString());
+		System.out.println( reverse(n1));
 
 	}
 
-	public static Node reverse(Node head) {
-		// 2,3,4
+	public static Node reverse(Node h) {
+		  if(h==null||h.next==null) return h;
+          Node next=h.next;
+          h.next=null;
+    
+          while(next != null);
+          {
+      
+         
+            
+         }
+    
+      
+      return h;
+	}
 
-		Node nextNode = head.next;
+	class Solution {
+		public List<String> findItinerary(String[][] tickets) {
+			Map<String, Queue<String>> targets = new HashMap<String, Queue<String>>();
 
-		head.next = null;
+			for (String[] ticket : tickets) {
+				targets.putIfAbsent(ticket[0], new PriorityQueue<>());
+				targets.get(ticket[0]).add(ticket[1]);
+			}
 
-		while (nextNode != null) {
-			Node tmp = nextNode;
-			nextNode = nextNode.next;
-			
-			tmp.next = head;
-			head=tmp;
-			
+			List<String> route = new LinkedList<String>();
+			Stack<String> stack = new Stack<>();
+			stack.push("JFK");
+			while (!stack.empty()) {
+				while (targets.containsKey(stack.peek()) && targets.get(stack.peek()).size() > 0) {
+					stack.push(targets.get(stack.peek()).poll());
+				}
+				route.add(0, stack.pop());
+
+			}
+			return route;
+
 		}
-
-		return head;
 	}
-
-	
 }

@@ -11,68 +11,60 @@ public class MinSubStringWithAllChars {
 		// Solution to
 		// https://codefights.com/interview-practice/task/rFeSD5rNy9RxfLcqg/description
 
-		System.out.println(minSubstringWithAllChars("adobecodebanc", "abc"));
+		System.out.println(minSubstringWithAllChars("biibiiaiicgba", "abc"));
 
 	}
 
-	// aibca ,abc
-	static String minSubstringWithAllChars(String s, String t) {
-		StringBuilder tmpResult = new StringBuilder();
-		StringBuilder result = null;
-		Set<Character> setT = getUniqCharacterHashSet(t);
+	public static String minSubstringWithAllChars(String s, String t) {
 
-		Set<Character> tmpSetT = new HashSet<Character>(setT);
-		char[] ca = s.toCharArray();
-		boolean start = false;
-		Map<Character, Integer> uniqueCharacterPosition = new HashMap<Character, Integer>();
+		Map<Character, Integer> mp = new HashMap<Character, Integer>();
 
-		for (int i = 0; i < ca.length; i++) {
+		int count = t.length();
+		int b = 0;
+		int si = -1;
+		int ei = -1;
 
-			if (tmpSetT.contains(ca[i]) || start == true) {
+		for (char c : t.toCharArray()) {
+			mp.putIfAbsent(c, 0);
+			mp.put(c, mp.get(c) + 1);
+		}
 
-				if (start == false && uniqueCharacterPosition.size() > 0
-						|| uniqueCharacterPosition.containsKey(ca[i]) && tmpResult.charAt(0) == ca[i]) {
+		for (int i = 0; i < s.length(); i++) {
+			char c = s.charAt(i);
+			if (mp.containsKey(c)) {
+				if (mp.get(c) > 0)
+					--count;
+				mp.put(c, mp.get(c) - 1);
+				if (count == 0) {
+					System.out.println("hello");
+				}
+			}
 
-					i = uniqueCharacterPosition.get(ca[i]);
-					tmpResult = new StringBuilder();
-					uniqueCharacterPosition = new HashMap<Character, Integer>();
-					tmpSetT = new HashSet<Character>(setT);
-					start = false;
-					continue;
-
+			// aaiaac
+			while (count == 0) {
+				if (si == -1 && ei == -1) {
+					si = b;
+					ei = i;
+				} else if (ei - si > i - b) {
+					si = b;
+					ei = i;
 				}
 
-				start = true;
-				tmpResult.append(ca[i]);
-
-				if (setT.contains(ca[i]))
-					uniqueCharacterPosition.put(ca[i], i);
-				tmpSetT.remove(ca[i]);
-
-				if (tmpSetT.isEmpty()) {
-					start = false;
-					tmpSetT = new HashSet<Character>(setT);
-					result = result == null ? result = new StringBuilder(tmpResult)
-							: tmpResult.length() < result.length() ? new StringBuilder(tmpResult) : result;
-
-					tmpResult = new StringBuilder();
+				char c1 = s.charAt(b);
+				if (mp.containsKey(c1)) {
+					mp.put(c1, mp.get(c1) + 1);
+					if (mp.get(c1) > 0)
+						++count;
 				}
+
+				++b;
 			}
 
 		}
 
-		result = result == null ? new StringBuilder() : result;
-		return result.toString();
-	}
-
-	static Set<Character> getUniqCharacterHashSet(String t) {
-		Set<Character> charSet = new HashSet<Character>();
-
-		for (char c : t.toCharArray()) {
-			charSet.add(c);
-		}
-
-		return charSet;
+		if (si == -1)
+			return "";
+		return s.substring(si, ei + 1);
 
 	}
 

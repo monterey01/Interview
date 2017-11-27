@@ -1,84 +1,33 @@
 package com.anant.dynamicprogramming;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /* A Naive recursive implementation of LCS problem in java*/
 public class LongestCommonSubString {
 
-	static class Memo {
-
-		int xPosition;
-		int yPosition;
-
-		public Memo(int xPosition, int yPosition) {
-			this.xPosition = xPosition;
-			this.yPosition = yPosition;
-		}
-
-		public boolean equals(Object obj) {
-			if (obj.getClass().equals(this.getClass())) {
-				Memo tmpMemo = (Memo) obj;
-				if (tmpMemo.xPosition == this.xPosition && tmpMemo.yPosition == this.yPosition)
-					return true;
-
-			}
-
-			return false;
-
-		}
-
-		public int hashCode() {
-			final int prime = 31;
-			int result = 1;
-			result = prime * result + xPosition;
-			result = prime * result + yPosition;
-			return result;
-		}
-
-	}
-
-	/* Returns length of LCS for X[0..m-1], Y[0..n-1] */
-	static int lcs(char[] X, char[] Y, int m, int n, boolean prevMatch, Map<Memo, Integer> memoziation) {
-
+	static int lcs(char[] i1, char[] i2, int[][] m) {
 		int result = 0;
-		int result1 = 0;
-		int result2 = 0;
 
-		if (m >= X.length || n >= Y.length)
-			return 0;
+		for (int i = 0; i < i1.length; i++) {
 
-		Memo memo = new Memo(m, n);
-		if (memoziation.containsKey(memo)) {
-			return memoziation.get(memo);
-		}
-
-		{
-			if (X[m] == Y[n]) {
-				result1 = 1;
-				if (m + 1 < X.length && n + 1 < Y.length && X[m + 1] == Y[n + 1]) {
-					result1 += lcs(X, Y, m + 1, n + 1, true,memoziation);
+			for (int j = 0; j < i2.length; j++) {
+				if (i1[i] == i2[j]) {
+					m[i][j] = 1 + (i - 1 > -1 && j - 1 > -1 ? m[i - 1][j - 1] : 0);
+					result = Math.max(m[i][j], result);
+				} else {
+					m[i][j] = 0;
 				}
-			} 
-			if(!prevMatch)result2 = Math.max(lcs(X, Y, m, n + 1,prevMatch, memoziation), lcs(X, Y, m + 1, n,prevMatch, memoziation));
-			
+			}
 		}
-
-		result = Math.max(result1, result2);
-		memoziation.put(memo,result);
 
 		return result;
 	}
 
 	public static void main(String[] args) {
 
-		String s1 = "ab22222x888";
-		String s2 = "888dee22222";
+		String s1 = "dabchhole";
+		String s2 = "abceuuuuhole";
 
-		char[] X = s1.toCharArray();
-		char[] Y = s2.toCharArray();
-
-		System.out.println("Length of LCS is" + " " + lcs(X, Y, 0, 0,false, new HashMap<Memo, Integer>()));
+		System.out.println(
+				"Length of LCS is" + " " + lcs(s1.toCharArray(), s2.toCharArray(), new int[s1.length()][s2.length()]));
 	}
 
 }

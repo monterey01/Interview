@@ -2,17 +2,18 @@ package com.anant.binarytree;
 
 public class Node {
 
-	private int data;
-	private Node left;
-	private Node right;
+	int data;
+	public Node left;
+	public Node right;
 
 	public Node() {
-		
+
 	}
- public Node(int data) {
-		this.data=data;
+
+	public Node(int data) {
+		this.data = data;
 	}
-	
+
 	public int getData() {
 		return data;
 	}
@@ -39,7 +40,7 @@ public class Node {
 
 	@Override
 	public String toString() {
-		return "Node [data=" + data + "]";
+		return "Node [data=" + data + ", left=" + left + ", right=" + right + "]";
 	}
 
 	@Override
@@ -75,9 +76,5 @@ public class Node {
 			return false;
 		return true;
 	}
-
-
-	
-
 
 }

@@ -1,4 +1,4 @@
-package com.anant.dynamicprogramming;
+package com.anant.numbertheory;
 
 import java.util.ArrayList;
 import java.util.Arrays;

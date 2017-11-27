@@ -1,41 +1,22 @@
 package com.anant.arrayquestions;
 
 public class BinarySearchArray {
+	static int[] a = new int[] { 1, 5, 6, 7, 8, 15, 20, 29, 30, 35 };
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		System.out.println(searchSortedArray(new int[] { 1, 2, 3, 4, 5, 6 }, 5));
+	public static void main(String args[]) {
+		System.out.println(binarySearch(a, 0, a.length - 1, 35));
 	}
 
-	// 1,2,3,4,5,6,7
-	public static int searchSortedArray(int[] input, int value) {
-		int result = -1;
-		int midIndex = getmidIndex(0, input.length - 1);
+	public static int binarySearch(int[] a, int s, int e, int i) {
 
-		while (midIndex > -1) {
-			if (input[midIndex] == value)
-				return midIndex;
-			if (midIndex - 1 >= 0 && input[midIndex - 1] == value)
-				return midIndex - 1;
-			if (midIndex + 1 < input.length && input[midIndex + 1] == value)
-				return midIndex + 1;
-			if (value > input[midIndex])
-				midIndex = getmidIndex(midIndex + 1, input.length - 1);
-			else {
-				midIndex = getmidIndex(0, midIndex - 1);
-			}
+		int mid = (s + e) / 2;
+		if (a[mid] == i)
+			return mid;
+		if (i < a[mid])
+			return binarySearch(a, s, mid - 1, i);
+		if (i > a[mid])
+			return binarySearch(a, mid + 1, e, i);
 
-		}
-
-		return result;
+		return -1;
 	}
-
-	public static int getmidIndex(int start, int end) {
-
-		if (start > end)
-			return -1;
-		return (start + end) / 2;
-
-	}
-
 }

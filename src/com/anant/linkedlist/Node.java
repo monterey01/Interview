@@ -6,10 +6,7 @@ public class Node {
 	Node previous;
 
 	
-	@Override
-	public String toString() {
-		return "Node [data=" + data + ", next=" + next + ", previous=" + previous + "]";
-	}
+	
 
 	@Override
 	public int hashCode() {
