@@ -3,40 +3,37 @@ package com.anant.implementds;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class ArrayInterface implements Iterable<Integer>{
+public class ArrayInterface implements Iterable<Integer> {
 
 	public static void main(String[] args) {
 
-		int[][] a = new int[][] { {1,2,3 }, {}, {}, {} };
+		int[][] a = new int[][] { { 1, 2, 3 }, {}, {}, {} };
 		ArrayInterface ar = new ArrayInterface(a);
 
 		Iterator<Integer> itr = ar.iterator();
 
 		while (itr.hasNext()) {
-				
-				int i = itr.next();
-		
-				System.out.println(i);
-				itr.remove();
-	
+
+			int i = itr.next();
+
+			System.out.println(i);
+			itr.remove();
+
 		}
-		
-	itr = ar.iterator();
-	while (itr.hasNext()) {
-		
-		int i = itr.next();
-		System.out.println(i);
-	
-}
 
-		
+		itr = ar.iterator();
+		while (itr.hasNext()) {
 
-		
+			int i = itr.next();
+			System.out.println(i);
+
+		}
+
 	}
 
 	private int[][] a;
 
-	public ArrayInterface(int[][] in){
+	public ArrayInterface(int[][] in) {
 		this.a = in;
 	}
 
@@ -58,7 +55,7 @@ public class ArrayInterface implements Iterable<Integer>{
 		public ArrayIterator(int[][] a) {
 			this.a = a;
 		}
-		
+
 		public int[][] getArray() {
 			return this.a;
 		}
@@ -98,15 +95,18 @@ public class ArrayInterface implements Iterable<Integer>{
 			if (!canremove) {
 				throw new IllegalStateException();
 			}
-	
+
 			int[] tmp = new int[a[pi].length - 1];
 
 			int l = 0;
 			for (int k = 0; k < a[pi].length; k++) {
-				if (k != pj) {tmp[l] = a[pi][k];++l;}
-				
+				if (k != pj) {
+					tmp[l] = a[pi][k];
+					++l;
+				}
+
 			}
-			
+
 			a[pi] = tmp;
 			--j;
 			canremove = false;

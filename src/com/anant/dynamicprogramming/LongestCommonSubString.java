@@ -25,6 +25,8 @@ public class LongestCommonSubString {
 
 		String s1 = "dabchhole";
 		String s2 = "abceuuuuhole";
+		
+		
 
 		System.out.println(
 				"Length of LCS is" + " " + lcs(s1.toCharArray(), s2.toCharArray(), new int[s1.length()][s2.length()]));

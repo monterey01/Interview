@@ -4,7 +4,14 @@ public class ClassifyStrings {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println(classifyStrings("quftl?aejluciapqunzpj"));
+		//System.out.println(classifyStrings("quftl?aejluciapqunzpj"));
+		
+		char c='5';
+		StringBuilder sb=new StringBuilder();
+		sb.append(c);
+		System.out.println(sb);
+		String s="ab";
+		
 	}
 	
 	
