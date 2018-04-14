@@ -4,6 +4,7 @@ package com.anant.binarytree;
 public class ExtractLeavesBinaryTree {
 	static class ListNode {
 		//branch 1
+		//branch 2
 		int value;
 		ListNode previous;
 		ListNode next;
