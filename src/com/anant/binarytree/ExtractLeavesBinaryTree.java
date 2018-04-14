@@ -3,7 +3,7 @@ package com.anant.binarytree;
 //Solution to http://www.geeksforgeeks.org/connect-leaves-doubly-linked-list/
 public class ExtractLeavesBinaryTree {
 	static class ListNode {
-
+		//branch 1
 		int value;
 		ListNode previous;
 		ListNode next;
